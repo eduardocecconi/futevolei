@@ -1,0 +1,73 @@
+---
+title: "ftv"
+author: "Eduardo Cecconi"
+date: "11/12/2021"
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(tidyverse)
+library(plotly)
+library(ggrepel)
+library(PerformanceAnalytics)
+library(reshape2)
+library(readxl)
+library(tidyr)
+library("tidyverse")
+library(hrbrthemes)
+library(viridis)
+```
+
+```{r}
+ggplot(data = futevolei) +
+  geom_bar(aes(x = meiofundo), color = "darkorchid", fill = "orange") +
+  geom_text(aes(x = meiofundo, label = ..count..), 
+            stat = "count", vjust = -1) +
+  labs(title = "Quantidade de Ataques",
+       x = "Meio Fundo",
+       y = "Quantidade",
+       caption = "Período: 2019/20") +
+  theme_light()
+```
+```{r}
+
+```
+
+```{r}
+ggplot(data = futevolei) +
+  geom_histogram(aes(x = pontoDL), fill = "darkorchid",
+                 color = "black", bins = 7) +
+  labs(title = "Acerto de Ataques",
+       x = "Acerto - Diagonal Longa",
+       y = "Frequência") +
+  theme_minimal()
+```
+
+```{r}
+ggplot(futevolei2, aes(x=Acerto, y=10*Médias)) +
+    geom_point(alpha=3, shape=21, color="black", fill="green", size = 10) +
+    geom_text(aes(label = Ataques), size = 5, color="black", vjust = -2) +
+    theme_bw() +
+    theme(legend.position="bottom") +
+    ylab("Médias") +
+    xlab("Acerto") +
+    theme(legend.position = "right")
+```
+
+```{r}
+ggplot(data = futevolei4) +
+  geom_point(mapping = aes(x = Total, y = Percentual,
+                           color = Nivel), size = 5) +
+  labs(x = "Total de Ataques",
+       y = "Percentual de Acerto", size = 5) +
+  theme_bw() +
+  theme(axis.text=element_text(size=12),
+        axis.title=element_text(size=14,face="bold"))
+```
+
